@@ -1,0 +1,160 @@
+<mvc:View controllerName="ztbsd0010.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:plugins="sap.ui.table.plugins"
+    xmlns:t="sap.ui.table"
+    xmlns:tnt="sap.tnt">
+    <Page id="page" title="{i18n>title}">
+    <Table
+        inset="false"
+        selectionChange="onSelectionChange"
+        mode="SingleSelectMaster"
+        id="tabHeader"
+        items="{
+            path: '/SOP_HEADERSet',
+            sorter: {
+                path: 'Sopnum'
+            }
+    }">
+    <headerToolbar>
+        <OverflowToolbar>
+            <Title text="판매운영계획문서 결재" level="H2"/>
+            <ToolbarSpacer />
+            <ComboBox id="idPopinLayout"
+                placeholder="판매계획연도"
+                items="{/YEARSet}" 
+                selectionChange="comboBoxChange">
+                <core:Item key="{Salesyear}" text="{Salesyear}"></core:Item>
+            </ComboBox>
+                
+            <Input id="sopNumId" maxLength="10" width="200px"
+                type="Text" showSuggestion="true" showValueHelp="true"
+                placeholder="판매운영계획번호"
+                valueHelpRequest="onValueHelprequest" />
+            <Button text="Search" type="Transparent" press="onSearch"/>
+        </OverflowToolbar>
+    </headerToolbar>
+    <infoToolbar>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+            <Button text="승인" press="update_check('A')" type="Accept"/>
+            <Button text="반려" press="updateC" type="Reject"/>
+            <Button text="중단" press="update_check('S')" type="Default"/>
+            <Button icon="sap-icon://refresh" press="onRefresh" tooltip="새로고침"/>
+        </OverflowToolbar>
+    </infoToolbar>
+    <columns>
+        <Column hAlign="Center">
+            <Text text="상신상태" />
+        </Column>
+        <Column hAlign="Center">
+            <Text text="판매계획운영번호" />
+        </Column>
+        <Column hAlign="Center">
+            <Text text="판매계획연도" />
+        </Column>
+        <Column hAlign="Center">
+            <Text text="국가코드" />
+        </Column>
+        <Column hAlign="Center">
+            <Text text="국가명" />
+        </Column>
+        <Column hAlign="Center">
+            <Text text="사원ID" />
+        </Column>
+        <Column hAlign="Center">
+            <Text text="담당자명" />
+        </Column>
+        <Column hAlign="Center">
+            <Text text="진행상태" />
+        </Column>
+        <Column hAlign="Center">
+            <Text text="반려사유" />
+        </Column>
+        <Column hAlign="Center">
+            <Text text="생성일" />
+        </Column>
+    </columns>
+    <items>
+        <ColumnListItem>
+            <cells>
+                <core:Icon 
+                        src="{path: 'Appr', formatter: '.apprIcon'}" 
+                        color="{path: 'Appr', formatter: '.apprColor'}"
+                        size="30px"
+                />
+                <Text text="{Sopnum}" />
+                <Text text="{Salesyear}" />
+                <Text text="{Ctrycode}" />
+                <Text text="{Ctryname}" />
+                <Text text="{Empid}" />
+                <Text text="{Empname}" />
+                <tnt:InfoLabel
+                    text="{path:'Status', formatter: '.sopStatus'}"
+                    displayOnly="true"
+                    colorScheme= "{
+                        parts: [
+                            {path: 'Status'}
+                        ],
+                        formatter: '.availableState'
+                    }"/>
+                <Button id="rej_bth" text="반려사유"  enabled="{= ${Rejreason}? true : false}" press=".onRejButtonPress" />
+                <Text text="{path: 'Sopdate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy.MM.dd' } }" />
+            </cells>
+        </ColumnListItem>
+    </items>
+    </Table>
+    <Table
+        inset="false"
+        mode="SingleSelectMaster"
+        id="tabItem"
+        items="{
+            path: 'Sopnum_data',
+            sorter: {
+                path: 'Sopnum'
+            }
+        }">
+        <columns>
+            <Column hAlign="Center" mergeDuplicates="true">
+                <Text text="판매계획운영번호" />
+            </Column>
+            <Column hAlign="Center" mergeDuplicates="true">
+                <Text text="국가코드" />
+            </Column>
+            <Column hAlign="Center" mergeDuplicates="true">
+                <Text text="국가명" />
+            </Column>
+            <Column hAlign="Center">
+                <Text text="자재번호" />
+            </Column>
+            <Column hAlign="Center">
+                <Text text="자재명" />
+            </Column>
+            <Column hAlign="Center">
+                <Text text="판매계획연도" />
+            </Column>
+            <Column hAlign="Center">
+                <Text text="제품수량" />
+            </Column>
+            <Column hAlign="Center">
+                <Text text="단위" />
+            </Column>
+        </columns>
+        <items>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{Sopnum}" />
+                    <Text text="{Ctrycode}" />
+                    <Text text="{Ctryname}" />
+                    <Text text="{Matcode}" />
+                    <Text text="{Matname}" />
+                    <Text text="{Salesyr}" />
+                    <Text text="{Amountprd}" />
+                    <Text text="{Unitcode}" />
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+    </Page>
+</mvc:View>

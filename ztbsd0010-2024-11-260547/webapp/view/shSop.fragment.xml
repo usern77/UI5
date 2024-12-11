@@ -1,0 +1,16 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <SelectDialog id="selDialog" title="Sopnum"
+                    items="{/SOP_HEADERSet}"
+                    search="onValueHelpSearch" 
+                    confirm="onValueHelpClose"
+                    cancel="onValueHelpClose">
+
+        <StandardListItem title="{Sopnum}" description="{Sopnum}" />
+
+
+    </SelectDialog>
+
+</core:FragmentDefinition>

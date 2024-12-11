@@ -1,0 +1,69 @@
+<mvc:View controllerName="ztbsd0011.controller.Main"
+    xmlns="sap.suite.ui.commons"
+    displayBlock="true"
+    xmlns:m="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:layout="sap.ui.layout"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:cm="sap.suite.ui.commons"
+    xmlns:core="sap.ui.core">
+
+    <ChartContainer
+        showFullScreen="true"
+        showPersonalization="false"
+        autoAdjustHeight="false"
+        personalizationPress="attachPersonalizationPress"
+        contentChange="attachContentChange"
+        title="Revenue">
+        <content>
+            <ChartContainerContent
+                icon="sap-icon://line-chart"
+                title="Line Chart">
+                <content>
+                    <viz:VizFrame id="idViewChart"
+                    vizType="line"
+                    width="80em"
+                    height="40em"
+                    vizProperties="{
+                        'title' : {text: '판매계획 대비 실적 비교',visible : true},
+                        'plotArea' : {
+                            colorPalette : ['#033154','#EC1938']
+                        }
+                    }">
+                        <viz:dataset>
+                            <viz.data:FlattenedDataset data="{/DATASet}"><!-- 데이터 바인딩-->
+                                <viz.data:dimensions><!-- X축 세팅-->
+                                    <viz.data:DimensionDefinition name="판매월" value="{Samonth}" />
+                                </viz.data:dimensions>
+
+                                <viz.data:measures><!-- Y축 세팅-->
+                                    <viz.data:MeasureDefinition name="판매계획수량" value="{Sopamountprd}" />
+                                    <viz.data:MeasureDefinition name="실제판매수량" value="{Soamountprd}" />
+                                </viz.data:measures>
+
+                            </viz.data:FlattenedDataset>
+                        </viz:dataset>
+
+
+                        <viz:feeds><!-- UI에 그려지는 모습을 세팅하기 -->
+                            <viz.feeds:FeedItem type="Dimension" uid="categoryAxis" values="판매월" />
+                            <viz.feeds:FeedItem type="Measure" uid="valueAxis" values="판매계획수량" />
+                            <viz.feeds:FeedItem type="Measure" uid="valueAxis" values="실제판매수량" />
+                        </viz:feeds>
+                    </viz:VizFrame>
+                </content>
+            </ChartContainerContent>
+        </content>
+        <dimensionSelectors>
+            <m:Select id="idSelector" forceSelection="true" selectedKey="2024" change="comboBoxChange">
+                <core:Item key="2023" text="2023"/>
+                <core:Item key="2024" text="2024"/>
+                <core:Item key="2025" text="2025"/>
+            </m:Select>
+        </dimensionSelectors>
+    </ChartContainer>
+    
+</mvc:View>
+

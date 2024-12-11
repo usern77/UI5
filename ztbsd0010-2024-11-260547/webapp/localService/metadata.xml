@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZTBSD0010_GT_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="SOP" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Sopnum"/>
+                    <PropertyRef Name="Ctrycode"/>
+                </Key>
+                <Property Name="Sopnum" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="판매운영계획번호" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ctrycode" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="국가코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Empid" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="사원ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Appr" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="APPR" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="판매운영계획 상태" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Salesyear" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="판매계획연도" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Rejreason" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="반려사유" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sopdate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="SOPDATE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZTBSD0010_GT_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="SOPSet" EntityType="ZTBSD0010_GT_SRV.SOP" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="http://210.16.199.141:8001/sap/opu/odata/sap/ZTBSD0010_GT_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://210.16.199.141:8001/sap/opu/odata/sap/ZTBSD0010_GT_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
